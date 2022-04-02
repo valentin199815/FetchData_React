@@ -4,12 +4,18 @@ import ReactDOM from "react-dom";
 // import app components
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import Joblist from "./components/joblist";
+import Banner from "./components/banner";
+
 
 ReactDOM.render(
   <React.StrictMode>
+    <Banner/>
     <App />
+    <Joblist/>
   </React.StrictMode>,
   document.getElementById("root")
+  
 );
 
 // If you want to start measuring performance in your app, pass a function

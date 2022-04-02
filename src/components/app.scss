@@ -1,0 +1,103 @@
+*{font-family: Helvetica, Arial, sans-serif;}
+@mixin buttons {
+    background-color:rgb(255,172,60);
+    padding: 14px 20px;
+    text-decoration: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    border: 0; outline: 0;
+    &:hover{
+        background-color:rgb(255,142,74);
+    }
+}
+h1{text-align: center;}
+.container, .jobs{
+    width: 90%;
+    margin: auto;
+    .filters{
+        text-align: center;
+        select{
+            margin: 3% 1%;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: rgb(17,26,32);
+            color: white;
+            border: 1px solid rgb(255,172,60);
+            @media screen and (max-width:700px) {
+                padding: 10px 0;
+                display: block;
+            }
+        }
+        button{
+            margin-left: 1%;
+            @include buttons();
+            @media screen and (max-width:700px) {
+                text-align: center;
+                margin-bottom: 3%;
+            }
+        }
+    }
+    .jobs{
+        border-top: 3px solid white;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px,1fr));
+        div:first-child{
+            h2{
+                @media screen and (max-width:700px) {
+                    font-size: 20px;
+                }
+            }
+            #location{
+                margin-bottom: 7%;
+                span{
+                    text-transform: uppercase;
+                    color:rgb(255,172,60)
+                }
+            }
+        }
+        div:nth-child(2){
+            text-align: right;
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            @media screen and (max-width:700px) {
+                justify-content: center;
+            }
+            a{
+                @include buttons();
+                @media screen and (max-width:700px) {
+                    margin-bottom: 3%;
+                }  
+            }
+        }
+        
+    }
+}
+.banner{
+    width: 100%;
+    height: 200px;
+    max-height: 200px;
+    overflow: hidden;
+    position: relative;
+    img{
+        width: 100%;
+        position: relative;
+        top: -170%;
+        height: 100px;
+        overflow: hidden;
+        zoom: 10;
+    }
+    margin-bottom: 0;
+    h2{
+        font-size: 40px;
+        font-weight: normal;
+        position: absolute;
+        top: 30%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
