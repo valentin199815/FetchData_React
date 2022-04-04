@@ -92,27 +92,22 @@ function Joblist() {
                         <>
                           {
                             data.map(item =>{
-                              jobs.map(job => {
                               if(item.categories.location == searchbylocation){
-                                  if(item.categories.team == job){
-                                    
-                                    return(
-                                      <>
-                                        
-                                        <div key={item.id} className="jobs">
-                                            <div className='data'>
-                                              <h2>{ item.text }</h2> 
-                                              <p id='location'>{item.categories.location} / <span>{item.categories.team}</span> </p>
-                                            </div>
-                                        <div><a type="button" target="_blank" href={"https://paralleldomain.com/job?id="+item.id}>Apply</a></div>
-                                          
+                                
+                                return(
+                                  <>
+                                    <h2 className='grouped'>{item.categories.team}</h2>
+                                    <div key={item.id} className="jobs">
+                                        <div className='data'>
+                                          <h2>{ item.text }</h2> 
+                                          <p id='location'>{item.categories.location} / <span>{item.categories.team}</span> </p>
                                         </div>
-                                    </>
-                                    )
-                                                                  
+                                    <div><a type="button" target="_blank" href={"https://paralleldomain.com/job?id="+item.id}>Apply</a></div>
+                                      
+                                    </div>
+                                </>
+                                )
                               }
-                            }
-                            })
                             })
                           }
                         </>
