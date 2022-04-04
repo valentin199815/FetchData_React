@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 // import app components
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import Joblist from "./components/Joblist";
+import Joblist from "./components/joblist";
 import Banner from "./components/banner";
 
 
