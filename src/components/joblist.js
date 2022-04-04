@@ -3,6 +3,7 @@ import { CircularProgress, CircularProgressWithLabel } from "@mui/material";
 import axios from 'axios';
 import "./app.css"
 
+
 function Joblist() {
   const [data, setData] = useState([]);  
   const [searchbyTeam, setSearchTeam] = useState("");
@@ -29,16 +30,18 @@ function Joblist() {
       
       
   });
-  const fulllist = () =>{
-    window.location.reload();
-  }
+
+  var jobs = ["Computer Graphics Content","Engineering","Strategy & Operations","Product Engineering",
+  "People","Go-To-Market","Think You Fit Somewhere Else?"];
+
+  
   if(loading) return <h1><CircularProgress/></h1>;
 
   return (      
         <div className='container'>
           <div className='filters'>
             <select onChange={(e)=> setSearchTeam(e.target.value)}>
-              <option value="Computer Graphics Content" onClick={(e)=>setSearchTeam(e.target.value)}>No preferred</option>
+              <option value="" onClick={(e)=>setSearchTeam(e.target.value)}>No preferred</option>
               <option value="Computer Graphics Content" onClick={(e)=>setSearchTeam(e.target.value)}>Computer Graphics Content</option>
               <option value="Engineering" onClick={(e)=>setSearchTeam(e.target.value)}>Engineering</option>
               <option value="Strategy & Operations" onClick={(e)=>setSearchTeam(e.target.value)}>Strategy & Operations</option>
@@ -49,7 +52,7 @@ function Joblist() {
             </select>
 
             <select onChange={(e)=> setSearchLocation(e.target.value)}>
-            <option value="Vancouver, British Columbia" onClick={(e)=> setSearchLocation(e.target.value)}>No preferred</option>
+            <option value="" onClick={(e)=> setSearchLocation(e.target.value)}>No preferred</option>
               <option value="San Francisco Bay Area" onClick={(e)=> setSearchLocation(e.target.value)}>San Francisco Bay Area</option>
               <option value="Vancouver, British Columbia, Canada" onClick={(e)=> setSearchLocation(e.target.value)}>Vancouver, British Columbia, Canada</option>
             </select>
@@ -57,21 +60,97 @@ function Joblist() {
               <option value="fulltime" onClick={(e)=> setSearchTime(e.target.value)}>No election</option>
               <option value="fulltime" onClick={(e)=> searchbytime(e.target.value)}>Full time</option>
             </select>
-            <button onClick={fulllist}>Show full list</button>
+            
           </div>
+
           
           {
-            filterjobs.sort((a, b) => a.categories.team > b.categories.team ? 1:-1).map(item =>(
-              <div key={item.id} className="jobs">
-                <div className='data'>
-                  <h2>{ item.text }</h2> 
-                  <p id='location'>{item.categories.location} / <span>{item.categories.team}</span> </p>
-                </div>
-                <div><a type="button" target="_blank" href={"https://paralleldomain.com/job?id="+item.id}>Apply</a></div>
+            
+            jobs.reduce(i=>{
+              if(searchbyTeam == ""){
+                return(
+                jobs.map(j=>{
+                    return(
+                      <>
+                        <h2 className='grouped'>{j}</h2>
+                        {
+                          data.map(item =>{
+                            if(item.categories.team == j){
+                              return(
+                                <>
+                              <div key={item.id} className="jobs">
+                                <div className='data'>
+                                  <h2>{ item.text }</h2> 
+                                  <p id='location'>{item.categories.location} / <span>{item.categories.team}</span> </p>
+                                </div>
+                                <div><a type="button" target="_blank" href={"https://paralleldomain.com/job?id="+item.id}>Apply</a></div>
+                                
+                              </div>
+                              </>
+                              )
+                            }
+                          })
+                        }
+                      </>
+                    )
+              }))
+              }else{
+                return(
+                  <>
+                    <h2 className='grouped'>{searchbyTeam}</h2>
+                    {
+                      data.map(item =>{
+
+                        if(item.categories.team == searchbyTeam){
+                          if(searchbylocation == ""){
+                            return(
+                              <>
+                            <div key={item.id} className="jobs">
+                              <div className='data'>
+                                <h2>{ item.text }</h2> 
+                                <p id='location'>{item.categories.location} / <span>{item.categories.team}</span> </p>
+                              </div>
+                              <div><a type="button" target="_blank" href={"https://paralleldomain.com/job?id="+item.id}>Apply</a></div>
+                              
+                            </div>
+                            </>
+                            )
+                          }else{
+                            if(item.categories.location == searchbylocation){
+                              return(
+                                <>
+                              <div key={item.id} className="jobs">
+                                <div className='data'>
+                                  <h2>{ item.text }</h2> 
+                                  <p id='location'>{item.categories.location} / <span>{item.categories.team}</span> </p>
+                                </div>
+                                <div><a type="button" target="_blank" href={"https://paralleldomain.com/job?id="+item.id}>Apply</a></div>
+                                
+                              </div>
+                              </>
+                              )
+                            }
+                          }
+
+                        }
+                        
+                      
+                      
+                      })
+                    }
+                  </>
+                  
+                )
                 
-              </div>
-            ))
+                
+              }             
+              
+            })
+           
+          
+            
           }
+          
         </div>
     
   );
