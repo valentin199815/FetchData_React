@@ -32,13 +32,14 @@ function Joblist() {
   return (      
         <div className='container'>
           <div className='filters'>
+            <p>Team</p>
             <select onChange={(e)=> setSearchTeam(e.target.value)}>
               <option value="" onClick={(e)=>setSearchTeam(e.target.value)}>No preferred</option>
               {jobs.map(job => {
                 return <option value={job} onClick={(e)=>setSearchTeam(e.target.value)}>{job}</option>
               })}
             </select>
-
+            <p>Location</p>
             <select onChange={(e)=> setSearchLocation(e.target.value)}>
               <option value="" onClick={(e)=> setSearchLocation(e.target.value)}>No preferred</option>
               {locations.map(location => {
@@ -46,6 +47,7 @@ function Joblist() {
               })}
               
             </select>
+            <p>Job Type</p>
             <select>
               <option value="" onClick={(e)=> setSearchTime(e.target.value)}>No election</option>
               <option value="fulltime" onClick={(e)=> searchbytime(e.target.value)}>Full time</option>

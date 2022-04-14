@@ -13,10 +13,30 @@ h1 {
 
 .container .filters, .jobs .filters {
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+@media screen and (max-width: 500px) {
+  .container .filters, .jobs .filters {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 
 .container .filters select, .jobs .filters select {
-  margin: 3% 1%;
+  margin: 3% 5% 3% 1%;
   padding: 10px;
   border-radius: 5px;
   text-align: center;
